@@ -1,0 +1,9 @@
+{
+  "name": "git-toolkit",
+  "description": "Streamlines git workflow with skills for committing staged changes with auto-generated messages and creating GitHub pull requests",
+  "version": "0.1.0",
+  "author": {
+    "name": "thinceller",
+    "email": "thinceller@gmail.com"
+  }
+}

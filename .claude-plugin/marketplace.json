@@ -1,0 +1,13 @@
+{
+  "name": "thinceller-claude-plugins",
+  "owner": {
+    "name": "thinceller",
+    "email": "thinceller@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "git-toolkit",
+      "source": "./plugins/git-toolkit"
+    }
+  ]
+}
