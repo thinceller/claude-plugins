@@ -1,14 +1,23 @@
 ---
 name: auto-group-commit
-description: Analyzes all changes in the working tree (staged, unstaged, and untracked), intelligently groups them into semantic commit units at hunk-level granularity, and commits them sequentially after user approval. Use when asked to "auto-commit", "group and commit", "split changes into commits", "organize my changes into commits", "batch commit", "smart commit", or "split my work into commits".
-argument-hint: "[language]"
+description: Analyzes all changes in the working tree (staged, unstaged, and untracked), intelligently groups them into semantic commit units at hunk-level granularity, and commits them sequentially. Use when asked to "auto-commit", "group and commit", "split changes into commits", "organize my changes into commits", "batch commit", "smart commit", or "split my work into commits". Supports flags for commit message language and for skipping the grouping-plan approval step.
+argument-hint: "[--lang <language>] [--yes]"
 ---
 
 # Auto Group Commit
 
-Analyze all working tree changes, group them into meaningful semantic commit units at hunk-level granularity, and commit them sequentially after user approval.
+Analyze all working tree changes, group them into meaningful semantic commit units at hunk-level granularity, and commit them sequentially.
 
-If `$ARGUMENTS` is provided, write all commit messages in that language (e.g., "japanese", "ja", "english", "en"). Default to English.
+## Options
+
+Parse `$ARGUMENTS` for the following flags before starting Step 1. Tokens can appear in any order. Treat unrecognized tokens as user input that needs clarification rather than silently ignoring them.
+
+- `--lang <language>` (alias: `--language <language>`) — Write all commit messages in the specified language (e.g., `japanese`, `ja`, `english`, `en`). Defaults to English when omitted.
+- `--yes` (alias: `-y`, `--auto-approve`) — Skip the explicit approval prompt in Step 4 and proceed directly to executing the commits. Use only when the invoker has clearly opted into autonomous commits (e.g., they passed the flag themselves, or they are running this inside a pre-approved automation loop). Even with `--yes`, still print the grouping plan before committing so the decision remains auditable in the transcript.
+
+**Backwards compatibility**: a single bare token without a leading `--` is interpreted as the language. So `japanese` is equivalent to `--lang japanese`. This keeps older invocations working.
+
+If `$ARGUMENTS` is empty, default to English commit messages and require explicit approval.
 
 ## Steps
 
@@ -75,9 +84,11 @@ Changes:
   ...
 ```
 
-Ask the user to approve the plan. If the user requests adjustments (reordering, merging groups, splitting further, changing messages), revise and re-present.
+If `--yes` is set, print the plan as an informational heads-up and proceed straight to Step 5 without waiting. The plan still goes in the transcript so the user can audit what was committed afterward.
 
-**Do NOT proceed to Step 5 without explicit user approval.**
+Otherwise, ask the user to approve the plan. If the user requests adjustments (reordering, merging groups, splitting further, changing messages), revise and re-present.
+
+**Without `--yes`, do NOT proceed to Step 5 without explicit user approval.** Approval gates exist because hunk-level grouping is a judgment call — the user is the final arbiter of which changes belong together.
 
 ### Step 5: Execute commits sequentially
 
@@ -150,7 +161,7 @@ Report the results to the user.
 
 - Only analyze and group changes — **do NOT push to the remote repository**
 - **Do NOT create a pull request**
-- **Always get user approval before executing any commits**
+- **Get user approval before executing any commits unless `--yes` was explicitly passed**
 - If no changes exist, notify the user and stop
 - Clean up all temporary patch files after use
 - Always use `cat <<'EOF'` (single-quoted) for HEREDOC commit messages to prevent variable expansion
