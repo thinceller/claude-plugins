@@ -19,6 +19,7 @@ Then install the plugin:
 ## Plugins
 
 - **git-toolkit** - Streamlines git workflow (auto-commit, PR creation)
+- **hermes-tweet** - Guides Hermes Agent X/Twitter workflows through Xquik
 
 ## License
 
