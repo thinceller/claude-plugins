@@ -1,0 +1,23 @@
+{
+  "skill_name": "resolve-merge-conflicts",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "今 feat/add-deps ブランチにいる。最新の main をマージコミットで取り込んでコンフリクトを解消して。ファイルは src/hooks/useThing.ts で、両方とも useCallback の依存配列を別々に書き換えている。",
+      "expected_output": "git merge --no-ff で main を取り込み、依存配列のコンフリクトを両側の依存を含む和集合として統合し、マーカー除去・検証後にマージコミットを作成する。ours/theirs の単純選択はしない。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "現在のブランチを origin/main の上に rebase して、出てくるコンフリクトを解消してほしい。",
+      "expected_output": "git rebase origin/main を実行し、rebase 中の ours/theirs が反転する点を踏まえて各コンフリクトを意図ベースで解消、git rebase --continue で次のコミットへ進み、全コミット完了まで繰り返す。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "git pull したらコンフリクトが出てマージが止まってる。直して。",
+      "expected_output": "git status で MERGE 状態を検知し（fetch/merge を再実行せず）、Unmerged paths のファイルを列挙して意図ベースで解消、マーカー残存チェックと検証の後 git commit でマージを完了する。",
+      "files": []
+    }
+  ]
+}

@@ -18,7 +18,7 @@ Then install the plugin:
 
 ## Plugins
 
-- **git-toolkit** - Streamlines git workflow (auto-commit, PR creation)
+- **git-toolkit** - Streamlines git workflow (auto-commit, PR creation, merge/rebase conflict resolution)
 
 ## License
 
