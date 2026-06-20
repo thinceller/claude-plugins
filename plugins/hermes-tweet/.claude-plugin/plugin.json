@@ -1,0 +1,9 @@
+{
+  "name": "hermes-tweet",
+  "description": "Guide Hermes Agent X/Twitter workflows with Hermes Tweet, the native Xquik plugin for social listening, research, audits, and controlled publishing",
+  "version": "0.1.6",
+  "author": {
+    "name": "Xquik",
+    "email": "support@xquik.com"
+  }
+}
