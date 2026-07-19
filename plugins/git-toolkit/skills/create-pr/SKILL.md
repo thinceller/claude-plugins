@@ -66,19 +66,36 @@ If no template is found, use the default format described in Step 4.
 
 #### Body
 
-If a PR template was found in Step 3, populate each section of the template with relevant content from the analyzed changes.
+The body exists to give reviewers what the diff view cannot. Reviewers will read the diff — the body's job is to prepare them for it, not to duplicate it.
 
-If no template was found, use this default format:
+Write only content that is invisible in the diff:
+
+- **Why**: the motivation or problem being solved. This is the most important part — it cannot be recovered from the code. Link related issues if any.
+- **What (high level)**: the approach and key design decisions, described in units of intent, not files. Note alternatives considered or trade-offs only when non-obvious.
+- **Impact**: breaking changes, behavior changes, or migration steps — easy to miss when reading a diff.
+- **Verification**: how the changes were tested.
+
+Never include:
+
+- File-by-file or commit-by-commit enumeration of changes — the diff view and commit list already show this better
+- Prose restatement of the code ("changed X to Y in file Z")
+- Boilerplate sections with nothing to say ("N/A", "None")
+
+Match length to the change: a small fix needs 2-3 sentences total, not a full sectioned document. When unsure, shorter is better — a body the reviewer actually reads beats a thorough one they skip.
+
+If a PR template was found in Step 3, populate its sections following the same principles.
+
+If no template was found, use this default format, omitting any section that would be empty:
 
 ```markdown
-## Summary
-<1-3 bullet points describing the changes>
+## Why
+<Motivation: the problem this solves and why it matters. Link issues.>
 
-## Changes
-<Detailed description of what was changed and why>
+## What
+<High-level approach and key design decisions. Not a file list.>
 
 ## Test Plan
-<How to verify the changes work correctly>
+<How the changes were verified>
 ```
 
 Always append the following footer:
