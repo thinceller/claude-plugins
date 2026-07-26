@@ -14,7 +14,7 @@ The instructions throughout favor advisory guidance over emphatic enforcement, i
 
 | Skill | Purpose |
 | --- | --- |
-| `grill` | A relentless one-question-at-a-time interview that sharpens an idea, design, or plan until shared understanding is reached. |
+| `grill` | A relentless one-question-at-a-time interview that sharpens a plan, decision, or idea until shared understanding is reached — not limited to software. |
 | `write-spec` | Synthesizes the current conversation and codebase understanding into a spec document, without interviewing. |
 | `write-plan` | Turns an agreed spec or conversation into an implementation plan of self-contained tasks ready for subagent delegation. |
 | `implement` | Executes an implementation plan or agreed work by orchestrating fresh subagents — one implementer per task, a reviewer between tasks — while the main model plans, briefs, and evaluates without writing code itself. |
@@ -70,7 +70,7 @@ The file stays out of git via a line in `.git/info/exclude`, not `.gitignore`: i
 
 ## How it works
 
-A `SessionStart` hook prints a condensed version of the skill catalog above at the start of a session (and after `/clear` or a context compaction), so the model has the full list of what's available and the typical flows without needing to open this file or any individual `SKILL.md`. Each skill still describes its own trigger phrases in its own frontmatter — the hook is a reminder of what exists, not a router. If `.claude/engineering.local.md` exists, the hook also points at it so doc-placement settings are surfaced early rather than discovered mid-task.
+A `SessionStart` hook prints a condensed version of the skill catalog above at the start of a session (and after `/clear` or a context compaction), so the model has the full list of what's available and the typical flows without needing to open this file or any individual `SKILL.md`. Each skill still describes its own trigger phrases in its own frontmatter — the hook is a reminder of what exists, not a router. The hook also carries one piece of entry guidance: an ambiguous one-line request is not yet an agreement — decisions and scope boundaries get surfaced to the user before `implement` is entered. If `.claude/engineering.local.md` exists, the hook also points at it so doc-placement settings are surfaced early rather than discovered mid-task.
 
 ## Requirements
 

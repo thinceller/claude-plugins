@@ -7,7 +7,7 @@ Execute a plan, spec, or in-conversation agreement by dispatching a fresh subage
 
 ## Input
 
-Start from a plan file, a spec, or whatever was agreed in conversation. First action: turn it into a task list — one entry per independent unit of work. If the input is too vague or coupled to break into tasks, say so and suggest `write-plan` first.
+Start from a plan file, a spec, or whatever was agreed in conversation. First action: turn it into a task list — one entry per independent unit of work. If the input is too vague or coupled to break into tasks, say so and suggest `write-plan` first. If the agreement exists only in your own investigation — no plan, no spec, no decisions confirmed in conversation — it is not an agreement yet: present the decisions you made and the scope boundary (including docs and CI the change touches) in a few lines and get the user's confirmation before dispatching the first subagent.
 
 ## Orchestrator stance
 
