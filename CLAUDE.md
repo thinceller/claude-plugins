@@ -39,3 +39,7 @@ When adding a new plugin, register it in `.claude-plugin/marketplace.json` under
 ## Versioning
 
 Bump `version` in `plugin.json` when releasing changes to a plugin. Follow semver.
+
+## Behavior Evals
+
+`evals/` contains headless behavior scenarios that verify plugin skills and hooks behave as intended (e.g. ambiguous requests get clarified instead of implemented). Run `/verify-behavior` after changes that affect plugin behavior. Each run spawns ~10 headless `claude -p` sessions and costs API tokens — do not run it for structural-only changes (use the `verify` skill for those).
