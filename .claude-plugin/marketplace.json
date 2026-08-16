@@ -12,6 +12,10 @@
     {
       "name": "engineering",
       "source": "./plugins/engineering"
+    },
+    {
+      "name": "ddd",
+      "source": "./plugins/ddd"
     }
   ]
 }

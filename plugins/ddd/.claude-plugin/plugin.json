@@ -1,0 +1,9 @@
+{
+  "name": "ddd",
+  "description": "Domain-Driven Design skills: discover a domain through Event Storming interview, then derive types from its agreed model.",
+  "version": "0.1.0",
+  "author": {
+    "name": "thinceller",
+    "email": "thinceller@gmail.com"
+  }
+}
