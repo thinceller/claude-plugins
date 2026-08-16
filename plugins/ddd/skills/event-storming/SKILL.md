@@ -36,4 +36,4 @@ Write up: scenarios covered, a command/event/aggregate table, an aggregate table
 
 Suggest `docs/domain/` and ask once. Use an undated filename — this is a living document that gets updated as domain understanding changes, not a dated snapshot. Don't write it into CLAUDE.md or AGENTS.md.
 
-If the `engineering` plugin is installed, `record-adr` is a candidate once a modeling decision here clears the ADR bar, and `derive-types` (same plugin) is a candidate once this is ready to become types.
+If the `engineering` plugin is installed, `record-adr` is a candidate once a modeling decision here clears the ADR bar. `derive-types`, a skill in this same `ddd` plugin, is a candidate on its own once this is ready to become types.
