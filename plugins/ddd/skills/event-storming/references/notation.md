@@ -12,8 +12,11 @@ Use [ddd-crew/eventstorming-glossary-cheat-sheet](https://github.com/ddd-crew/ev
 | Small Yellow | Actor | The role that triggers a command. |
 | Green | Query / Read Model | Data read to support a decision. |
 | Large Yellow | Constraint | A business rule that limits what's possible. |
+| Pale Yellow | Aggregate | A cluster of state that receives commands and protects an invariant. |
 | Wide Pink | External System | A system outside the modeled domain. |
 | Neon Pink | Hotspot | An open question, disagreement, or risk. |
+
+The ddd-crew cheat sheet centers on Big Picture and Process Level; Aggregate is a Design-Level element it doesn't cover, added here using Brandolini's Pale Yellow convention.
 
 ## Deliverable templates
 
@@ -58,7 +61,7 @@ flowchart LR
     classDef policy fill:#c8a2c8,color:#000
     classDef actor fill:#fff44f,color:#000
     classDef readmodel fill:#77dd77,color:#000
-    classDef aggregate fill:#eee,color:#000,stroke:#333
+    classDef aggregate fill:#fff9c4,color:#000,stroke:#333
 
     Actor[Actor]:::actor --> Command[Command]:::command
     Command --> Aggregate[Aggregate]:::aggregate
