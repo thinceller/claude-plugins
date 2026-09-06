@@ -16,6 +16,10 @@
     {
       "name": "ddd",
       "source": "./plugins/ddd"
+    },
+    {
+      "name": "writing",
+      "source": "./plugins/writing"
     }
   ]
 }
