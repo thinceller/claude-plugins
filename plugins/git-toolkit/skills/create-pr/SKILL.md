@@ -74,6 +74,7 @@ Write only content that is invisible in the diff:
 - **What (high level)**: the approach and key design decisions, described in units of intent, not files. Note alternatives considered or trade-offs only when non-obvious.
 - **Impact**: breaking changes, behavior changes, or migration steps — easy to miss when reading a diff.
 - **Verification**: how the changes were tested.
+- **Screenshots**: for UI changes, when seeing the result helps the reviewer more than reading the diff — a new screen or component, a layout or style change, a new visual state (empty, error, loading). Skip them for changes with no visible difference (refactors, copy-only tweaks, backend work). See "Attaching screenshots" below.
 
 Never include:
 
@@ -97,6 +98,16 @@ If no template was found, use this default format, omitting any section that wou
 ## Test Plan
 <How the changes were verified>
 ```
+
+#### Attaching screenshots
+
+When the Screenshots criterion above applies:
+
+1. Gather images. Reuse screenshots already taken while verifying the change (e.g. `playwright-cli screenshot` output). If none exist and the app can be run locally, capture the changed screens yourself. If neither is possible, ask the user for image paths; if they have none, proceed without screenshots.
+2. Reference each image in the body with a local path and alt text describing what the reviewer should look at, e.g. `![Settings page with the new export button](./tmp/settings.png)`. Show a before/after pair when the change modifies an existing screen.
+3. Pass each image to `gh pr create --attach <path>` in Step 5. `gh` uploads the file and rewrites the body reference to the uploaded asset URL.
+
+Keep it to the images that inform the review — one per changed screen or state, not a screenshot of every page.
 
 Always append the following footer:
 
@@ -122,9 +133,12 @@ PR body content here
 EOF
 )" \
   [--draft]  # Include if draft mode requested
+  [--attach ./path/to/screenshot.png]  # One per image referenced in the body
 ```
 
 Add `--draft` flag when draft mode is requested.
+
+Add one `--attach <path>` per screenshot referenced in the body. If `gh pr create --help` does not list `--attach`, the installed `gh` is too old: tell the user to upgrade, drop the image references from the body, and create the PR without them.
 
 3. Run `gh pr view --json url,number,title,isDraft` to confirm creation and report the PR URL, number, title, and status (draft/open) to the user.
 

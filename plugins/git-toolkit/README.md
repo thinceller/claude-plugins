@@ -15,7 +15,7 @@ Four skills for the parts of a git workflow that need judgment: deciding what be
 
 `auto-group-commit` is the wide one. It unstages everything first so the analysis sees a uniform tree, splits a single file's hunks across different commits when they serve different purposes, then prints the full plan and waits. `--yes` skips the wait; `--lang` sets the message language. During execution it re-reads each file's diff before staging, because line numbers shift as commits land. Patch construction is documented in `references/patch-format-example.md`.
 
-`create-pr` fills a repository PR template when it finds one and otherwise falls back to Why / What / Test Plan. The body rules are the substance of the skill: write only what is invisible in the diff, never enumerate changes file by file, and match length to the change. Pass `draft` to open it as a draft.
+`create-pr` fills a repository PR template when it finds one and otherwise falls back to Why / What / Test Plan. The body rules are the substance of the skill: write only what is invisible in the diff, never enumerate changes file by file, and match length to the change. For UI changes where seeing the result helps the reviewer, it attaches screenshots via `gh pr create --attach`. Pass `draft` to open it as a draft.
 
 `resolve-merge-conflicts` works whether you are already mid-conflict or want it to start the merge or rebase. It handles both states, including the ours/theirs swap between them (`references/conflict-markers.md`), and runs typecheck, lint, or tests on the touched files before `git commit --no-edit` or `git rebase --continue`.
 
