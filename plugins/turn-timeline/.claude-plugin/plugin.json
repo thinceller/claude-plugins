@@ -1,0 +1,10 @@
+{
+  "name": "turn-timeline",
+  "description": "A Gantt-style timeline of each turn: every model request and tool call, per agent lane, in a pane (or inline in the transcript). `/timeline` or the footer button opens it; `/timeline stats` shows the recording overhead.",
+  "version": "0.1.0",
+  "author": {
+    "name": "thinceller",
+    "email": "thinceller@gmail.com"
+  },
+  "types": "./types/index.d.ts"
+}

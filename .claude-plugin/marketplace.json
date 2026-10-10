@@ -20,6 +20,10 @@
     {
       "name": "writing",
       "source": "./plugins/writing"
+    },
+    {
+      "name": "turn-timeline",
+      "source": "./plugins/turn-timeline"
     }
   ]
 }
