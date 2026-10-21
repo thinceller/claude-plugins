@@ -67,31 +67,47 @@ Write for the PR author, who has not seen this conversation: do not refer to fin
 
 Use `event: "COMMENT"`; never `APPROVE` or `REQUEST_CHANGES` unless the user explicitly asks.
 
-Comment bodies contain quotes, backslashes, and code blocks, so do not hand-escape them into JSON. Write each body to its own file and let `jq` build the payload (any JSON serializer works if `jq` is unavailable):
+Comment bodies contain quotes, backslashes, and code blocks, so do not hand-escape them into JSON. Write each body to its own file and let `jq` build the payload (any JSON serializer works if `jq` is unavailable).
+
+Write the files into a fresh directory from `mktemp -d`, and refer to it by the absolute path that command prints in every later command. Do not rely on `$TMPDIR` across commands: a sandboxed command and one run outside the sandbox (as `gh` often is) can see different `$TMPDIR` values, so the post can pick up a stale `review.json` left there by an earlier review, posting unrelated comments to the PR.
 
 ```bash
-cat > "$TMPDIR/body1.md" <<'EOF'
+dir=$(mktemp -d) && echo "$dir"
+
+cat > "$dir/body1.md" <<'EOF'
 🤖 **Claude Code によるレビューコメント**
 
 ...
 EOF
 
-jq -n --rawfile b1 "$TMPDIR/body1.md" '{
+jq -n --rawfile b1 "$dir/body1.md" '{
   commit_id: "<headRefOid>",
   event: "COMMENT",
   comments: [
     {path: "path/to/file.php", line: 189, side: "RIGHT", body: $b1}
   ]
-}' > "$TMPDIR/review.json"
+}' > "$dir/review.json"
+```
 
-gh api repos/{owner}/{repo}/pulls/<number>/reviews --input "$TMPDIR/review.json" --jq '.html_url'
+Post in a separate command using the printed absolute path. Print what is about to be sent in the same command, so the output shows the payload that was actually posted:
+
+```bash
+jq -r '.commit_id, (.comments[] | "\(.path):\(.line) \(.body | split("\n")[0])")' /abs/path/review.json \
+  && gh api repos/{owner}/{repo}/pulls/<number>/reviews --input /abs/path/review.json --jq '.id, .html_url'
 ```
 
 Add a top-level `"body"` only when a finding could not be anchored inline (Step 3).
 
-### Step 6: Report
+### Step 6: Verify and Report
 
-Report the review URL and list each posted comment as `path:line` with a one-line summary.
+Before reporting, read back the posted comments and confirm the paths, lines, and the label on the first line match what you wrote:
+
+```bash
+gh api repos/{owner}/{repo}/pulls/<number>/comments --paginate \
+  --jq '.[] | select(.pull_request_review_id == <review_id>) | "\(.path):\(.line) \(.body | split("\n")[0])"'
+```
+
+If they do not match, tell the user what was actually posted and ask before deleting or reposting anything. Otherwise report the review URL and list each posted comment as `path:line` with a one-line summary.
 
 ## Updating Posted Comments
 
