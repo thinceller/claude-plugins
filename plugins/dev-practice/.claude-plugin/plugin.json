@@ -1,0 +1,9 @@
+{
+  "name": "dev-practice",
+  "description": "Working discipline injected into every session and subagent, role subagents (explorer, worker, reviewer) with a read-only guard, and a small set of planning, TDD, and verification skills. Built to behave the same in local, cloud, and project-thread sessions.",
+  "version": "0.1.0",
+  "author": {
+    "name": "thinceller",
+    "email": "thinceller@gmail.com"
+  }
+}
