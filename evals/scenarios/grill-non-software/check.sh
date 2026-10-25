@@ -3,4 +3,4 @@ set -euo pipefail
 
 outfile="$1"
 
-grep -q 'engineering:grill' "$outfile"
+grep -q 'dev-practice:grill' "$outfile"
