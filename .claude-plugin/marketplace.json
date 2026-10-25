@@ -24,10 +24,6 @@
     {
       "name": "turn-timeline",
       "source": "./plugins/turn-timeline"
-    },
-    {
-      "name": "surface-probe",
-      "source": "./plugins/surface-probe"
     }
   ]
 }
