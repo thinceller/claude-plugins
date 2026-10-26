@@ -19,17 +19,17 @@ This plugin is strong at discovery and deliberately weak at convergence. Aggrega
 
 There's no `SessionStart` hook. Event Storming is one methodology choice among several, not something to inject into every session — the skills surface themselves through their own descriptions instead.
 
-There's no config file either. The only place a save location is needed is asking once where the deliverable goes. This plugin does not read or write the `engineering` plugin's `.claude/engineering.local.md` — that file is rewritten wholesale by `setup-engineering` from three keys, so a key written from outside it would just be discarded on the next run.
+There's no config file either. The only place a save location is needed is asking once where the deliverable goes.
 
-This plugin has no dependency on `engineering`. If it's installed, `event-storming` and `derive-types` mention `record-adr` and `grill` as candidates at the points where they're relevant, but neither skill assumes those exist.
+This plugin has no dependency on `dev-practice`. If it's installed, `event-storming` mentions its `grill` skill for the interview technique, but no skill here assumes it exists.
 
 ## Typical flow
 
-`event-storming` → (`record-adr`, if a modeling decision clears that bar) → `derive-types` → implementation.
+`event-storming` → (an ADR, if a modeling decision clears that bar) → `derive-types` → implementation.
 
 1. `event-storming` interviews the domain until commands, events, aggregates, and vocabulary are agreed.
-2. If a decision made along the way is hard to reverse and worth recording, `record-adr` (from `engineering`, if installed) captures it.
+2. If a decision made along the way is hard to reverse and worth recording, record it as an ADR in the repository's own format.
 3. `derive-types` converts the agreed model into value types, state unions, workflow signatures, and error types.
-4. Implementation proceeds from there — by hand, or via `engineering`'s `write-plan` / `implement` if that plugin is installed.
+4. Implementation proceeds from there — by hand, or via `dev-practice`'s `write-plan` / `implement` if that plugin is installed.
 
 Entering at `derive-types` directly is normal too, whenever a domain model already exists from a source other than `event-storming`.

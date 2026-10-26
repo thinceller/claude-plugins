@@ -9,7 +9,7 @@ Not every domain needs this. Skip it, and say why, when:
 - Nobody in the conversation actually knows the domain — filling in events from guesswork isn't storming, it's fiction.
 - Vocabulary and boundaries are already stable and just need maintaining.
 
-Interview one question at a time, waiting for the answer before moving on. Offer a recommended answer with each question so a one-word reply ("that works") is enough to move forward. Facts the environment already knows — existing code, docs, git history — are looked up, not asked; decisions belong to the user. Don't start writing the deliverable until the user confirms understanding is shared. (If the `engineering` plugin is installed, `grill` covers the interview technique in more depth.)
+Interview one question at a time, waiting for the answer before moving on. Offer a recommended answer with each question so a one-word reply ("that works") is enough to move forward. Facts the environment already knows — existing code, docs, git history — are looked up, not asked; decisions belong to the user. Don't start writing the deliverable until the user confirms understanding is shared. (If the `dev-practice` plugin is installed, its `grill` skill covers the interview technique in more depth.)
 
 ## Separating what was said from what you inferred
 
@@ -36,4 +36,4 @@ Write up: scenarios covered, a command/event/aggregate table, an aggregate table
 
 Suggest `docs/domain/` and ask once. Use an undated filename — this is a living document that gets updated as domain understanding changes, not a dated snapshot. Don't write it into CLAUDE.md or AGENTS.md.
 
-If the `engineering` plugin is installed, `record-adr` is a candidate once a modeling decision here clears the ADR bar. `derive-types`, a skill in this same `ddd` plugin, is a candidate on its own once this is ready to become types.
+Once a modeling decision here clears the ADR bar, recording it as an ADR in the repository's own format is a candidate. `derive-types`, a skill in this same `ddd` plugin, is a candidate on its own once this is ready to become types.

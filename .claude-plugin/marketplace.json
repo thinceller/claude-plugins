@@ -10,10 +10,6 @@
       "source": "./plugins/git-toolkit"
     },
     {
-      "name": "engineering",
-      "source": "./plugins/engineering"
-    },
-    {
       "name": "dev-practice",
       "source": "./plugins/dev-practice"
     },
