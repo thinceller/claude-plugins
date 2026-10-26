@@ -33,6 +33,6 @@ A pure function isn't automatically domain logic. Formatting a date for display 
 
 ## Next
 
-The decisions made here — adopting this technique, how errors are represented, whether events become values — are costly to reverse and easy to misread without the context behind them; `record-adr` is a candidate if the `engineering` plugin is available. Once conventions settle, a repo-local skill and linter keep them followed going forward.
+The decisions made here — adopting this technique, how errors are represented, whether events become values — are costly to reverse and easy to misread without the context behind them; recording them as an ADR in the repository's own format is a candidate. Once conventions settle, a repo-local skill and linter keep them followed going forward.
 
 See [references/typescript.md](references/typescript.md) for a TypeScript worked example.

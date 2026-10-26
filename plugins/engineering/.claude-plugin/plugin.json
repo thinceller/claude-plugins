@@ -1,9 +1,0 @@
-{
-  "name": "engineering",
-  "description": "Loosely-coupled software engineering skills: interview-driven design, spec and plan writing, subagent implementation loops, debugging, TDD, and review disciplines.",
-  "version": "0.2.0",
-  "author": {
-    "name": "thinceller",
-    "email": "thinceller@gmail.com"
-  }
-}
