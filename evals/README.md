@@ -49,9 +49,10 @@ Invoked as `REPO_ROOT=<repo root> bash check.sh <output-file> <workdir>`. Exit 0
 
 ## Current scenarios
 
-Every trial loads `plugins/dev-practice` from this working tree with `--plugin-dir` and turns off the installed `dev-practice` and `engineering` plugins, so the hooks under test are the ones in the tree. Your user-level `~/.claude/CLAUDE.md` still loads; while it repeats the dev-practice discipline, only `skill-map-injection` proves the plugin's own hook fired.
+Every trial loads `plugins/dev-practice` and `plugins/writing` from this working tree with `--plugin-dir` and turns off the installed `dev-practice`, `writing`, and `engineering` plugins, so the hooks under test are the ones in the tree. Your user-level `~/.claude/CLAUDE.md` still loads; while it repeats the dev-practice discipline, only `skill-map-injection` proves the dev-practice hook fired. `terms-injection` does the same for the writing hook.
 
 - `skill-map-injection` — the `<dev-practice-skills>` block from `plugins/dev-practice/context/skill-map.md` is actually injected into the session context.
+- `terms-injection` — the `<writing-japanese-terms>` block from `plugins/writing/context/terms.md` is actually injected into the session context.
 - `ambiguous-request-gate` — an ambiguous one-line feature request gets a clarifying question instead of a direct implementation.
 - `grill-non-software` — the `grill` skill fires for a non-software personal decision, not just software requests.
 - `clear-spec-no-overblock` — a fully-specified, scoped request gets implemented directly, without over-blocking on clarification (control case).

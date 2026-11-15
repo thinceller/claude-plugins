@@ -1,7 +1,7 @@
 {
   "name": "writing",
-  "description": "Writing skills. `plain-japanese` writes and revises Japanese prose in plain, commonly understood words — no coined terms — so it reads easily.",
-  "version": "0.1.0",
+  "description": "Writing skills. `plain-japanese` writes and revises Japanese prose in plain, commonly understood words — no coined terms — so it reads easily. SessionStart and SubagentStart hooks inject term rules that keep established technical terms (バージョン, テーブル, カラム) from being translated into kanji words in any Japanese output.",
+  "version": "0.2.0",
   "author": {
     "name": "thinceller",
     "email": "thinceller@gmail.com"
