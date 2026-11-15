@@ -67,11 +67,12 @@ for name in "${scenarios[@]}"; do
         || { echo "error: fixture git setup failed for scenario $name" >&2; exit 1; }
     fi
 
-    # Load the plugin under test from this working tree, and turn off the
-    # installed copies (and the engineering plugin it replaces) so they don't overlap.
+    # Load the plugins under test from this working tree, and turn off the
+    # installed copies (and the engineering plugin dev-practice replaces) so they don't overlap.
     claude_args=(-p "$PROMPT" --model "$MODEL" --max-turns "$MAX_TURNS"
       --plugin-dir "$REPO_ROOT/plugins/dev-practice"
-      --settings '{"enabledPlugins":{"engineering@thinceller-claude-plugins":false,"dev-practice@thinceller-claude-plugins":false,"dev-practice@synced":false}}')
+      --plugin-dir "$REPO_ROOT/plugins/writing"
+      --settings '{"enabledPlugins":{"engineering@thinceller-claude-plugins":false,"dev-practice@thinceller-claude-plugins":false,"dev-practice@synced":false,"writing@thinceller-claude-plugins":false,"writing@synced":false}}')
     if [ -n "$PERMISSION_MODE" ]; then
       claude_args+=(--permission-mode "$PERMISSION_MODE")
     fi
